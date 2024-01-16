@@ -1,15 +1,15 @@
 <?php
     include './db.php';
     
-    if(isset($_POST["iname"]) || isset($_POST["id"])|| isset($_POST["quantity"])||$_POST["name"]||$_POST["stid"])
+    if(isset($_POST["iname"]) || isset($_POST["iid"])|| isset($_POST["quantity"])||$_POST["Department"])
     {
         $iname=$_POST["iname"];
-        $id=$_POST["id"];
+        $iid=$_POST["iid"];
         $Quantity=$_POST["quantity"];
-        $name=$_POST["name"];
-        $stid=$_POST["stid"];
+        $Department=$_POST["Department"];
 
-        $sql="INSERT INTO stock(`Iteam_name`, `Iteam ID`, `Quantity`,`Name`,`ID`) VALUES ('$iname','$id','$Quantity','$name','$stid')";
+
+        $sql="INSERT INTO stock(`Iteam_name`, `Iteam ID`, `Quantity`,`Department`) VALUES ('$iname','$id','$Quantity','$name')";
 
         mysqli_query($conn,$sql);
     }

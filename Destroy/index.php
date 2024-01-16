@@ -208,89 +208,28 @@
 						  </thead>
 						  
 						  <tbody>
-						      <tr>
-							 <th><span class="custom-checkbox">
-							 <input type="checkbox" id="checkbox1" name="option[]" value="1">
-							 <label for="checkbox1"></label></th>
-							 <th>Thomas Hardy</th>
-							 <th>ThomasHardy@gmail.com</th>
-							 <th></th>
-							 <th>(78-582552-9)</th>
-							 <th>
-							    <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-							   <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-							   </a>
-							   <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
-							   <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-							   </a>
-							 </th>
-							 </tr>
-							 
-							 
-							  <tr>
-							 <th><span class="custom-checkbox">
-							 <input type="checkbox" id="checkbox2" name="option[]" value="1">
-							 <label for="checkbox2"></label></th>
-							 <th>Dominique Perrier</th>
-							 <th>dominiquePerrier@gmail.com</th>
-							 <th></th>
-							 <th>(78-5235-2-9)</th>
-							 <th>
-							    <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-							   <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-							   </a>
-							   <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
-							   <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-							   </a>
-							 </th>
-							 </tr>
-							 
-							 
-							 <tr>
-							 <th><span class="custom-checkbox">
-							 <input type="checkbox" id="checkbox3" name="option[]" value="1">
-							 <label for="checkbox3"></label></th>
-							 <th>Marai Andres</th>
-							 <th>MarariAndres@gmail.com</th>
-							 <th></th>
-							 <th>(78-239-669)</th>
-							 <th>
-							    <a href="#edit" class="edit" data-toggle="modal">
-							   <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-							   </a>
-							   <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
-							   <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-							   </a>
-							 </th>
-							 </tr>
-							 
-							  <tr>
-							 <th><span class="custom-checkbox">
-							 <input type="checkbox" id="checkbox4" name="option[]" value="1">
-							 <label for="checkbox4"></label></th>
-							 <th>Vishweb Design</th>
-							 <th>vishwebdesign@gmail.com</th>
-							 <th></th>
-							 <th>(78-239-669)</th>
-							 <th>
-							    <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-							   <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-							   </a>
-							   <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
-							   <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-							   </a>
-							 </th>
-							 </tr>
-							 
-							  <tr>
-							 <th><span class="custom-checkbox">
-							 <input type="checkbox" id="checkbox5" name="option[]" value="1">
-							 <label for="checkbox5"></label></th>
-							 <th>Vishwajeet Kumar</th>
-							 <th>vishkumar234@gmail.com</th>
-							 <th></th>
-							 <th>(78-555-229)</th>
-							 <th>
+							<tr>
+							<th>
+						  <?php
+							include './db.php';
+
+							$sql="SELECT * FROM destroy";
+							$result=$conn->query($sql);
+							if(!$result)
+							{
+								die("Invalid Querry" .$conn->error);
+							}
+							while($row=$result->fetch_assoc()){
+								echo"
+						    <tr>
+							 <th>".$row["Iteam_name"]."</th>
+							 <th>".$row["Iteam ID"]."</th>
+							 <th>".$row["quantity"]."</th>
+							 <th>".$row["Department"]."</th>
+							 </tr>";
+							}
+							$conn->close();
+							 ?>
 							    <a href="#editEmployeeModal" class="edit" data-toggle="modal">
 							   <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
 							   </a>
@@ -345,6 +284,7 @@
 									   <!----add-modal start--------->
 		<div class="modal fade" tabindex="-1" id="addEmployeeModal" role="dialog">
   <div class="modal-dialog" role="document">
+	<form action="./destroy.php" method="post">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Add Iteam</h5>
@@ -355,24 +295,25 @@
       <div class="modal-body">
         <div class="form-group">
 		    <h5>Iteam Name</h5>
-			<input type="text" class="form-control" required>
+			<input type="text" id="iname" class="form-control" required>
 		</div>
 		<div class="form-group">
 		    <h5>Iteam ID</h5>
-			<input type="text" class="form-control" required>
+			<input type="text" id="iid" class="form-control" required>
 		</div>
 		<div class="form-group">
 		    <h5>Quantity</h5>
-			<input type="number" class="form-control" required>
+			<input type="number" id="quantity" class="form-control" required>
 		</div>
 		<div class="form-group">
 		    <h5>Department</h5>
-			<input type="text" class="form-control" required>
+			<input type="text" id="department" class="form-control" required>
 		</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-success">Add</button>
+</form>
       </div>
     </div>
   </div>

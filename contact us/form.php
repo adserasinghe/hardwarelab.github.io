@@ -2,7 +2,7 @@
 if (isset($_POST['email'])) {
 
     // REPLACE THIS 2 LINES AS YOU DESIRE
-    $email_to = "info@dtet.gov.lk";
+   // $email_to = "info@dtet.gov.lk";
     $email_subject = "I Have A problem";
 
     function problem($error)
